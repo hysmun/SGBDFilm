@@ -332,7 +332,7 @@ public class FilmGui extends javax.swing.JFrame {
                 cs.registerOutParameter(2, OracleTypes.CURSOR);
                 cs.execute();
                 rs = (ResultSet) cs.getObject(5);
-                resultTable.setModel(DbUtils.resultSetToTableModel(rs));
+                //resultTable.setModel(DbUtils.resultSetToTableModel(rs));
             } catch (SQLException ex) {
                 Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -357,6 +357,7 @@ public class FilmGui extends javax.swing.JFrame {
             //on affiche le gui details
             DetailsGui dg = new DetailsGui();
             dg.currentFilm = info;
+            dg.setVisible(true);
     }//GEN-LAST:event_detailsButtonMouseClicked
 
     /**
