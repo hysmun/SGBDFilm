@@ -12,6 +12,7 @@ import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -82,6 +83,11 @@ public class FilmGui extends javax.swing.JFrame {
 
             }
         ));
+        resultTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resultTableMouseClicked(evt);
+            }
+        });
         resultScrollPanel.setViewportView(resultTable);
 
         rechercheButton.setText("Recherche");
@@ -98,29 +104,26 @@ public class FilmGui extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(acteurLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(resultScrollPanel)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(resultScrollPanel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(titreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(titreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(identifiantLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
-                                    .addComponent(identifiantTF)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(acteurTF, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(directeurTF))))))
+                            .addComponent(titreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(identifiantLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                            .addComponent(identifiantTF)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(acteurTF, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(directeurTF))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(371, 371, 371)
@@ -251,6 +254,54 @@ public class FilmGui extends javax.swing.JFrame {
         }
         System.out.println("RECHERCHE FAITES!");
     }//GEN-LAST:event_rechercheButtonMouseClicked
+
+    private void resultTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultTableMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount() == 2)
+        {
+            //recherche film
+            String FilmStr = (String)resultTable.getValueAt(resultTable.getSelectedRow(), 0);
+            ArrayList info= new ArrayList();
+            String sql = "{call pkg_rechcb.GetFilmInfo(?,?)}";
+            Ref result = null;
+            ResultSet rs=null;
+            CallableStatement cs = null;
+            try {
+                cs = uti.getCon().prepareCall(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                //cs = uti.getCon().prepareStatement(sql);
+                cs.setString(1, FilmStr);
+                cs.registerOutParameter(2, OracleTypes.CURSOR);
+                cs.execute();
+                rs = (ResultSet) cs.getObject(5);
+                resultTable.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (SQLException ex) {
+                Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                //
+                rs.next();
+            } catch (SQLException ex) {
+                Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ResultSetMetaData meta=null;
+            int numberOfColumns=0;
+            try {
+                meta = rs.getMetaData();
+                numberOfColumns = meta.getColumnCount();
+                for(int i=0;i<numberOfColumns;i++){
+                    info.add(rs.getObject(i));
+                }
+            }
+            catch (SQLException ex) {
+                Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //on affiche le gui details
+            DetailsGui dg = new DetailsGui();
+            dg.currentFilm = info;
+            
+            
+        }
+    }//GEN-LAST:event_resultTableMouseClicked
 
     /**
      * @param args the command line arguments
