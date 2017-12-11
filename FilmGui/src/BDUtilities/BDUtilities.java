@@ -25,7 +25,7 @@ public class BDUtilities {
 
     public BDUtilities(String ip, int port) throws ClassNotFoundException, Exception {
         String tmpCon;
-        login = "cc";
+        login = "cb";
         motdepasse = "oracle";
         
         nameConnection = "oracle.jdbc.OracleDriver";

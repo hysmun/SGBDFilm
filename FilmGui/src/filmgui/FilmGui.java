@@ -6,10 +6,12 @@
 package filmgui;
 import BDUtilities.BDUtilities;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -164,7 +166,7 @@ public class FilmGui extends javax.swing.JFrame {
         ArrayDescriptor des = null;
         try
         {
-            des = ArrayDescriptor.createDescriptor("CC.STR_ARRAY", uti.getCon());
+            des = ArrayDescriptor.createDescriptor("PKG_RECHCB.STR_ARRAY", uti.getCon());
         }
         catch(SQLException ex)
         {
@@ -185,21 +187,25 @@ public class FilmGui extends javax.swing.JFrame {
         }
         //recherche
         CallableStatement cs = null;
+        //PreparedStatement cs = null;
         ResultSet rs=null;
-        String sql = "{call cc.rechcb2(?,?,?,?,?)}";
+        //String sql = "{call pkg_rechcb.rechcbfct(?,?,?,?)}";
+        String sql = "{call pkg_rechcb.RechCB2(?,?,?,?,?)}";
         Ref result = null;
         try {
             cs = uti.getCon().prepareCall(sql);
+            //cs = uti.getCon().prepareStatement(sql);
             cs.setString(1, identifiantTF.getText().equals("")?"%":identifiantTF.getText());
             cs.setString(2, titreTF.getText().equals("")?"%":titreTF.getText());
             ARRAY arrayAct = new ARRAY(des,uti.getCon(),actStr);
             ARRAY arrayDir = new ARRAY(des,uti.getCon(),dirStr);
             cs.setArray(3, arrayAct);
             cs.setArray(4, arrayDir);
-            cs.registerOutParameter(5,OracleTypes.CURSOR);
+            cs.registerOutParameter(5, OracleTypes.CURSOR);
+            //rs = (ResultSet) cs.executeQuery();
             cs.execute();
-            result = cs.getRef(5);
-            rs = (ResultSet) result.getObject();
+            //rs = (ResultSet) cs.getArray(5);
+            rs = (ResultSet) cs.getObject(5);
         } catch (SQLException ex) {
             Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
         }
