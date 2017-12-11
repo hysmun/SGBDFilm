@@ -38,11 +38,10 @@ public class DetailsGui extends javax.swing.JFrame {
         certificationValueLabel.setText(currentFilm.get(7).toString());
         voteAvgValueLabel.setText(currentFilm.get(8).toString());
         voteCountValueLabel.setText(currentFilm.get(9).toString());
-        listeGenreLabel.setText(currentFilm.get(10).toString());
-        listeActeursLabel.setText(currentFilm.get(11).toString());
-        listeDirecteursLabel.setText(currentFilm.get(12).toString());
+        //listeGenreLabel.setText(currentFilm.get(10).toString());
+        //listeActeursLabel.setText(currentFilm.get(11).toString());
+        //listeDirecteursLabel.setText(currentFilm.get(12).toString());
         return 1;
-        
     }
 
     /**
