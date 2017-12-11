@@ -209,7 +209,7 @@ public class FilmGui extends javax.swing.JFrame {
         
         //affichag0
         int i =0;
-        DefaultTableModel dtm = resultTable.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) resultTable.getModel();
         ResultSetMetaData meta=null;
         int numberOfColumns=0;
         try {
