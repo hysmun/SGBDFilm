@@ -10,11 +10,16 @@ import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
+import oracle.jdbc.OracleConnection;
+import oracle.jdbc.internal.OracleTypes;
+import oracle.sql.ARRAY;
+import oracle.sql.ArrayDescriptor;
 /**
  *
  * @author 'Toine
@@ -156,6 +161,15 @@ public class FilmGui extends javax.swing.JFrame {
         String[] dirStr=null;
         String[] actStr=null;
         StringTokenizer strTok;
+        ArrayDescriptor des = null;
+        try
+        {
+            des = ArrayDescriptor.createDescriptor("CC.STR_ARRAY", uti.getCon());
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         strTok = new StringTokenizer(directeurTF.getText(), ",");
         dirStr = new String[strTok.countTokens()==0?10:strTok.countTokens() ];
@@ -172,15 +186,17 @@ public class FilmGui extends javax.swing.JFrame {
         //recherche
         CallableStatement cs = null;
         ResultSet rs=null;
-        String sql = "{call rechcb2(?,?,?,?,?}";
+        String sql = "{call cc.rechcb2(?,?,?,?,?)}";
         Ref result = null;
         try {
             cs = uti.getCon().prepareCall(sql);
             cs.setString(1, identifiantTF.getText().equals("")?"%":identifiantTF.getText());
             cs.setString(2, titreTF.getText().equals("")?"%":titreTF.getText());
-            cs.setArray(3, uti.getCon().createArrayOf("varchar2", actStr));
-            cs.setArray(4, uti.getCon().createArrayOf("varchar2", dirStr));
-            cs.registerOutParameter(5, java.sql.Types.REF_CURSOR);
+            ARRAY arrayAct = new ARRAY(des,uti.getCon(),actStr);
+            ARRAY arrayDir = new ARRAY(des,uti.getCon(),dirStr);
+            cs.setArray(3, arrayAct);
+            cs.setArray(4, arrayDir);
+            cs.registerOutParameter(5,OracleTypes.CURSOR);
             cs.execute();
             result = cs.getRef(5);
             rs = (ResultSet) result.getObject();
