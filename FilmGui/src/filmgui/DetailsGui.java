@@ -87,7 +87,7 @@ public class DetailsGui extends javax.swing.JFrame {
         voteButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         idLabel.setText("ID :");
 
@@ -321,6 +321,8 @@ public class DetailsGui extends javax.swing.JFrame {
 
     private void okButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okButtonMouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_okButtonMouseClicked
 
     private void voteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voteButtonMouseClicked
