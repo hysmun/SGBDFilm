@@ -302,7 +302,7 @@ public class FilmGui extends javax.swing.JFrame {
             try {
                 if(column==0)
                     rs.next();
-                if(row == getRowCount())
+                if(row == getRowCount()-2)
                 {
                     rs.first();
                 }
