@@ -300,7 +300,8 @@ public class FilmGui extends javax.swing.JFrame {
             
             Object myObj = null;
             try {
-                rs.absolute(row+1);
+                if(column==0)
+                    rs.next();
                 myObj = rs.getObject(column+1);
             } catch (SQLException ex) {
                 Logger.getLogger(MyTableModel.class.getName()).log(Level.SEVERE, null, ex);
