@@ -278,7 +278,7 @@ public class FilmGui extends javax.swing.JFrame {
         public int getRowCount(){
             int ret = 0;
             try {
-                ret = rs.getRow();
+                ret = rs.getFetchSize();
             } catch (SQLException ex) {
                 Logger.getLogger(MyTableModel.class.getName()).log(Level.SEVERE, null, ex);
             }
