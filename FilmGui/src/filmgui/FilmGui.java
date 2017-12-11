@@ -163,6 +163,7 @@ public class FilmGui extends javax.swing.JFrame {
         String[] dirStr=null;
         String[] actStr=null;
         StringTokenizer strTok;
+        int nbrTok=0;
         ArrayDescriptor des = null;
         try
         {
@@ -174,17 +175,19 @@ public class FilmGui extends javax.swing.JFrame {
         }
         
         strTok = new StringTokenizer(directeurTF.getText(), ",");
-        dirStr = new String[strTok.countTokens()==0?1:strTok.countTokens()+1];
-        System.out.println(""+strTok.countTokens());
-        for(int i=0; i<strTok.countTokens();i++)
+        nbrTok = strTok.countTokens();
+        dirStr = new String[nbrTok==0?1:nbrTok+1];
+        System.out.println(""+nbrTok);
+        for(int i=0; i<nbrTok;i++)
         {
             dirStr[i]= new String(strTok.nextToken());
             System.out.println(""+i+" -- "+dirStr[i]);
         }
         strTok = new StringTokenizer(acteurTF.getText(), ",");
-        actStr = new String[strTok.countTokens()==0? 1:strTok.countTokens()+1];
-        System.out.println(""+strTok.countTokens());
-        for(int i=0; i<strTok.countTokens();i++)
+        nbrTok = strTok.countTokens();
+        actStr = new String[nbrTok==0? 1:nbrTok+1];
+        System.out.println(""+nbrTok);
+        for(int i=0; i<nbrTok;i++)
         {
             actStr[i]= new String(strTok.nextToken());
             System.out.println(""+i+" -- "+actStr[i]);
