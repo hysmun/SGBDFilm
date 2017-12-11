@@ -178,12 +178,14 @@ public class FilmGui extends javax.swing.JFrame {
         for(int i=0; i<strTok.countTokens();i++)
         {
             dirStr[i]= strTok.nextToken();
+            System.out.println(dirStr[i]);
         }
         strTok = new StringTokenizer(acteurTF.getText(), ",");
         actStr = new String[strTok.countTokens()==0? 0:strTok.countTokens()];
         for(int i=0; i<strTok.countTokens();i++)
         {
             actStr[i]= strTok.nextToken();
+            System.out.println(actStr[i]);
         }
         //recherche
         CallableStatement cs = null;
