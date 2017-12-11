@@ -195,8 +195,8 @@ public class FilmGui extends javax.swing.JFrame {
         try {
             cs = uti.getCon().prepareCall(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             //cs = uti.getCon().prepareStatement(sql);
-            cs.setString(1, identifiantTF.getText().equals("")?"'%'":identifiantTF.getText());
-            cs.setString(2, titreTF.getText().equals("")?"'%'":titreTF.getText());
+            cs.setString(1, identifiantTF.getText().equals("")?"%":identifiantTF.getText());
+            cs.setString(2, titreTF.getText().equals("")?"%":titreTF.getText());
             ARRAY arrayAct = new ARRAY(des,uti.getCon(),actStr);
             ARRAY arrayDir = new ARRAY(des,uti.getCon(),dirStr);
             cs.setArray(3, arrayAct);
