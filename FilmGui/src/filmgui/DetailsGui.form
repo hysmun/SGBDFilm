@@ -34,7 +34,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="certificationLabel" alignment="0" max="32767" attributes="0"/>
                                           <Component id="budgetLabel" alignment="0" max="32767" attributes="0"/>
                                           <Component id="taglineLabel" alignment="0" max="32767" attributes="0"/>
                                           <Component id="idLabel" alignment="0" max="32767" attributes="0"/>
@@ -49,29 +49,29 @@
                                           <Component id="titreValueLabel" alignment="0" max="32767" attributes="0"/>
                                           <Component id="statusValueLabel" alignment="0" max="32767" attributes="0"/>
                                           <Component id="releaseDateValueLabel" alignment="0" pref="300" max="32767" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel8" max="32767" attributes="0"/>
+                                          <Component id="runtimeValueLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="taglineValueLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="budgetValueLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="certificationValueLabel" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="genreLabel" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel2" alignment="0" pref="113" max="32767" attributes="0"/>
+                                          <Component id="voteCountLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="voteAvgLabel" alignment="0" pref="113" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel9" max="32767" attributes="0"/>
-                                          <Component id="jLabel10" max="32767" attributes="0"/>
+                                          <Component id="voteAvgValueLabel" max="32767" attributes="0"/>
+                                          <Component id="voteCountValueLabel" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="posterPanel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="listeGenreLabel" alignment="0" max="32767" attributes="0"/>
                           <Component id="listeActeursLabel" alignment="0" max="32767" attributes="0"/>
                           <Component id="listeDirecteursLabel" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -129,32 +129,32 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="runtimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="runtimeValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="taglineLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="taglineValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="budgetLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="budgetValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="certificationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="certificationValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="voteAvgLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="voteAvgValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="voteCountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="voteCountValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="posterPanel" max="32767" attributes="0"/>
@@ -173,7 +173,7 @@
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <Component id="listeGenreLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="acteurLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -295,7 +295,7 @@
         <Property name="text" type="java.lang.String" value="Budget :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="certificationLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Certification :"/>
       </Properties>
@@ -305,47 +305,47 @@
         <Property name="text" type="java.lang.String" value="Genre :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="voteAvgLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Vote Average :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="voteCountLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Vote Count :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="listeGenreLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="listeGenre"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="runtimeValueLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="runtimeValueLabel"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="taglineValueLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="taglineValueLabel"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="budgetValueLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="budgetValueLabel"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="certificationValueLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="certificationValueLabel"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
+    <Component class="javax.swing.JLabel" name="voteAvgValueLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="voteAvgValueLabel"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel10">
+    <Component class="javax.swing.JLabel" name="voteCountValueLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="voteCountValueLabel"/>
       </Properties>

@@ -5,17 +5,44 @@
  */
 package filmgui;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 'Toine
  */
 public class DetailsGui extends javax.swing.JFrame {
 
+    public ArrayList currentFilm=null;
+    /*
+    0- id           1- titre            2- status       3-release       4- rutime       5- tagline
+    6- budget       7- certification    8- voteAvg      9-voteCount     10-genre        11 acteur       12- directeur
+    */
+    public int nrb = 13;
     /**
      * Creates new form DetailsGui
      */
     public DetailsGui() {
         initComponents();
+    }
+    
+    public int setAllValue(ArrayList pArrayList)
+    {
+        idValueLabel.setText(currentFilm.get(0).toString());
+        titreValueLabel.setText(currentFilm.get(1).toString());
+        statusValueLabel.setText(currentFilm.get(2).toString());
+        releaseDateValueLabel.setText(currentFilm.get(3).toString());
+        runtimeValueLabel.setText(currentFilm.get(4).toString());
+        taglineValueLabel.setText(currentFilm.get(5).toString());
+        budgetValueLabel.setText(currentFilm.get(6).toString());
+        certificationValueLabel.setText(currentFilm.get(7).toString());
+        voteAvgValueLabel.setText(currentFilm.get(8).toString());
+        voteCountValueLabel.setText(currentFilm.get(9).toString());
+        listeGenreLabel.setText(currentFilm.get(10).toString());
+        listeActeursLabel.setText(currentFilm.get(11).toString());
+        listeDirecteursLabel.setText(currentFilm.get(12).toString());
+        return 1;
+        
     }
 
     /**
@@ -44,17 +71,17 @@ public class DetailsGui extends javax.swing.JFrame {
         runtimeLabel = new javax.swing.JLabel();
         taglineLabel = new javax.swing.JLabel();
         budgetLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        certificationLabel = new javax.swing.JLabel();
         genreLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        voteAvgLabel = new javax.swing.JLabel();
+        voteCountLabel = new javax.swing.JLabel();
+        listeGenreLabel = new javax.swing.JLabel();
+        runtimeValueLabel = new javax.swing.JLabel();
+        taglineValueLabel = new javax.swing.JLabel();
+        budgetValueLabel = new javax.swing.JLabel();
+        certificationValueLabel = new javax.swing.JLabel();
+        voteAvgValueLabel = new javax.swing.JLabel();
+        voteCountValueLabel = new javax.swing.JLabel();
         attribuerCoteLabel = new javax.swing.JLabel();
         nomUtilisateurTF = new javax.swing.JTextField();
         voteSpinner = new javax.swing.JSpinner();
@@ -112,27 +139,27 @@ public class DetailsGui extends javax.swing.JFrame {
 
         budgetLabel.setText("Budget :");
 
-        jLabel1.setText("Certification :");
+        certificationLabel.setText("Certification :");
 
         genreLabel.setText("Genre :");
 
-        jLabel2.setText("Vote Average :");
+        voteAvgLabel.setText("Vote Average :");
 
-        jLabel3.setText("Vote Count :");
+        voteCountLabel.setText("Vote Count :");
 
-        jLabel4.setText("listeGenre");
+        listeGenreLabel.setText("listeGenre");
 
-        jLabel5.setText("runtimeValueLabel");
+        runtimeValueLabel.setText("runtimeValueLabel");
 
-        jLabel6.setText("taglineValueLabel");
+        taglineValueLabel.setText("taglineValueLabel");
 
-        jLabel7.setText("budgetValueLabel");
+        budgetValueLabel.setText("budgetValueLabel");
 
-        jLabel8.setText("certificationValueLabel");
+        certificationValueLabel.setText("certificationValueLabel");
 
-        jLabel9.setText("voteAvgValueLabel");
+        voteAvgValueLabel.setText("voteAvgValueLabel");
 
-        jLabel10.setText("voteCountValueLabel");
+        voteCountValueLabel.setText("voteCountValueLabel");
 
         attribuerCoteLabel.setText("Attribuer une cote :");
 
@@ -169,7 +196,7 @@ public class DetailsGui extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(certificationLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(budgetLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(taglineLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(idLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -183,22 +210,22 @@ public class DetailsGui extends javax.swing.JFrame {
                                             .addComponent(titreValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(statusValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(releaseDateValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(runtimeValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(taglineValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(budgetValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(certificationValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(genreLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                                            .addComponent(voteCountLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(voteAvgLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                            .addComponent(voteAvgValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(voteCountValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(27, 27, 27)
                                 .addComponent(posterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(listeGenreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(listeActeursLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(listeDirecteursLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,27 +269,27 @@ public class DetailsGui extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(runtimeLabel)
-                                    .addComponent(jLabel5))
+                                    .addComponent(runtimeValueLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(taglineLabel)
-                                    .addComponent(jLabel6))
+                                    .addComponent(taglineValueLabel))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(budgetLabel)
-                                    .addComponent(jLabel7))
+                                    .addComponent(budgetValueLabel))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel8))
+                                    .addComponent(certificationLabel)
+                                    .addComponent(certificationValueLabel))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel9))
+                                    .addComponent(voteAvgLabel)
+                                    .addComponent(voteAvgValueLabel))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel10)))
+                                    .addComponent(voteCountLabel)
+                                    .addComponent(voteCountValueLabel)))
                             .addComponent(posterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(genreLabel))
@@ -275,7 +302,7 @@ public class DetailsGui extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(voteButton)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(listeGenreLabel)
                 .addGap(18, 18, 18)
                 .addComponent(acteurLabel)
                 .addGap(18, 18, 18)
@@ -340,22 +367,16 @@ public class DetailsGui extends javax.swing.JFrame {
     private javax.swing.JLabel acteurLabel;
     private javax.swing.JLabel attribuerCoteLabel;
     private javax.swing.JLabel budgetLabel;
+    private javax.swing.JLabel budgetValueLabel;
+    private javax.swing.JLabel certificationLabel;
+    private javax.swing.JLabel certificationValueLabel;
     private javax.swing.JLabel directeurLabel;
     private javax.swing.JLabel genreLabel;
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel idValueLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel listeActeursLabel;
     private javax.swing.JLabel listeDirecteursLabel;
+    private javax.swing.JLabel listeGenreLabel;
     private javax.swing.JTextField nomUtilisateurTF;
     private javax.swing.JButton okButton;
     private javax.swing.JLabel posterLabel;
@@ -363,12 +384,18 @@ public class DetailsGui extends javax.swing.JFrame {
     private javax.swing.JLabel releaseDateLabel;
     private javax.swing.JLabel releaseDateValueLabel;
     private javax.swing.JLabel runtimeLabel;
+    private javax.swing.JLabel runtimeValueLabel;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JLabel statusValueLabel;
     private javax.swing.JLabel taglineLabel;
+    private javax.swing.JLabel taglineValueLabel;
     private javax.swing.JLabel titreLabel;
     private javax.swing.JLabel titreValueLabel;
+    private javax.swing.JLabel voteAvgLabel;
+    private javax.swing.JLabel voteAvgValueLabel;
     private javax.swing.JButton voteButton;
+    private javax.swing.JLabel voteCountLabel;
+    private javax.swing.JLabel voteCountValueLabel;
     private javax.swing.JSpinner voteSpinner;
     // End of variables declaration//GEN-END:variables
 }
