@@ -302,6 +302,10 @@ public class FilmGui extends javax.swing.JFrame {
             try {
                 if(column==0)
                     rs.next();
+                if(row == getRowCount())
+                {
+                    while(rs.previous()==true);
+                }
                 myObj = rs.getObject(column+1);
             } catch (SQLException ex) {
                 Logger.getLogger(MyTableModel.class.getName()).log(Level.SEVERE, null, ex);
