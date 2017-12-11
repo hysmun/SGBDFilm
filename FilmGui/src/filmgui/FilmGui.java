@@ -331,7 +331,7 @@ public class FilmGui extends javax.swing.JFrame {
                 cs.setString(1, FilmStr);
                 cs.registerOutParameter(2, OracleTypes.CURSOR);
                 cs.execute();
-                rs = (ResultSet) cs.getObject(5);
+                rs = (ResultSet) cs.getObject(2);
                 resultTable.setModel(DbUtils.resultSetToTableModel(rs));
             } catch (SQLException ex) {
                 Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
