@@ -304,7 +304,7 @@ public class FilmGui extends javax.swing.JFrame {
                     rs.next();
                 if(row == getRowCount())
                 {
-                    while(rs.previous()==true);
+                    rs.first();
                 }
                 myObj = rs.getObject(column+1);
             } catch (SQLException ex) {
