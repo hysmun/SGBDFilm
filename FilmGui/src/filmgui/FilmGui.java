@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 import oracle.jdbc.internal.OracleTypes;
 import oracle.sql.ARRAY;
 import oracle.sql.ArrayDescriptor;
@@ -205,6 +206,7 @@ public class FilmGui extends javax.swing.JFrame {
             cs.execute();
             //rs = (ResultSet) cs.getArray(5);
             rs = (ResultSet) cs.getObject(5);
+            resultTable.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException ex) {
             Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -231,8 +233,8 @@ public class FilmGui extends javax.swing.JFrame {
                 dtm.addRow(str);
                 System.out.println();
             }
-            resultTable.setModel(dtm);
-            dtm.fireTableDataChanged();
+            //resultTable.setModel(dtm);
+            //dtm.fireTableDataChanged();
         } catch (SQLException ex) {
             Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
         }
