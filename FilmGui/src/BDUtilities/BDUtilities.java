@@ -28,11 +28,11 @@ public class BDUtilities {
         login = "cc";
         motdepasse = "oracle";
         
-        nameConnection = "oracle.jdbc.driver.OracleDriver";
+        nameConnection = "oracle.jdbc.OracleDriver";
         
         Class.forName(nameConnection);
         
-        tmpCon = "jdbc:oracle:thin@localhost:2222:cc";
+        tmpCon = "jdbc:oracle:thin:@localhost:1521/orcl";
         con = DriverManager.getConnection(tmpCon, login, motdepasse);
         instruc =  con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
     }

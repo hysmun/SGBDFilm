@@ -30,7 +30,7 @@ public class FilmGui extends javax.swing.JFrame {
     public FilmGui() {
         try {
             initComponents();
-            ip = "127.0.0.1";
+            ip = "localhost";
             port = 1521;
             uti = new BDUtilities(ip,port);
         } catch (Exception ex) {
@@ -172,14 +172,14 @@ public class FilmGui extends javax.swing.JFrame {
         //recherche
         CallableStatement cs = null;
         ResultSet rs=null;
-        String sql = "{call rechcb2(?,?,?,?,?,?}";
+        String sql = "{call rechcb2(?,?,?,?,?}";
         Ref result = null;
         try {
             cs = uti.getCon().prepareCall(sql);
             cs.setString(1, identifiantTF.getText().equals("")?"%":identifiantTF.getText());
             cs.setString(2, titreTF.getText().equals("")?"%":titreTF.getText());
-            cs.setArray(3, uti.getCon().createArrayOf("varchar2(255)", actStr));
-            cs.setArray(3, uti.getCon().createArrayOf("varchar2(255)", dirStr));
+            cs.setArray(3, uti.getCon().createArrayOf("varchar2", actStr));
+            cs.setArray(4, uti.getCon().createArrayOf("varchar2", dirStr));
             cs.registerOutParameter(5, java.sql.Types.REF_CURSOR);
             cs.execute();
             result = cs.getRef(5);
