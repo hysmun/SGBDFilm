@@ -220,7 +220,7 @@ public class FilmGui extends javax.swing.JFrame {
             cs.execute();
             //rs = (ResultSet) cs.getArray(5);
             rs = (ResultSet) cs.getObject(5);
-            resultTable.setModel(DbUtils.resultSetToTableModel(rs));
+            //resultTable.setModel(DbUtils.resultSetToTableModel(rs));
             
         } catch (SQLException ex) {
             Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
