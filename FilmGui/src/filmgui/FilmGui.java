@@ -189,7 +189,7 @@ public class FilmGui extends javax.swing.JFrame {
         String sql = "{call pkg_rechcb.RechCB2(?,?,?,?,?)}";
         Ref result = null;
         try {
-            cs = uti.getCon().prepareCall(sql);
+            cs = uti.getCon().prepareCall(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             //cs = uti.getCon().prepareStatement(sql);
             cs.setString(1, identifiantTF.getText().equals("")?"%":identifiantTF.getText());
             cs.setString(2, titreTF.getText().equals("")?"%":titreTF.getText());
