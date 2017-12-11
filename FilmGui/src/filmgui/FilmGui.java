@@ -15,6 +15,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import oracle.jdbc.internal.OracleTypes;
 import oracle.sql.ARRAY;
 import oracle.sql.ArrayDescriptor;
@@ -206,9 +207,34 @@ public class FilmGui extends javax.swing.JFrame {
             Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        //affichage
-        MyTableModel mtm = new MyTableModel(rs);
-        resultTable.setModel(mtm);
+        //affichag0
+        int i =0;
+        DefaultTableModel dtm = new DefaultTableModel();
+        ResultSetMetaData meta=null;
+        int numberOfColumns=0;
+        try {
+            meta = rs.getMetaData();
+            numberOfColumns = meta.getColumnCount();
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            while(rs.next())
+            {
+                Object[] obj = new Object[numberOfColumns];
+                for(i=0; i<obj.length;i++)
+                {
+                    obj[i] = rs.getObject(i+1);
+                }
+                dtm.addColumn(obj);
+                
+            }
+            resultTable.setModel(dtm);
+            dtm.fireTableDataChanged();
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("RECHERCHE FAITES!");
     }//GEN-LAST:event_rechercheButtonMouseClicked
 
