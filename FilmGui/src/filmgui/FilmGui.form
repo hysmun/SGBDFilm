@@ -24,32 +24,44 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="resultScrollPanel" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="titreTF" max="32767" attributes="0"/>
-                          <Component id="titreLabel" pref="378" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="artistTF" max="32767" attributes="0"/>
-                          <Component id="artistLabel" pref="299" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="acteurLabel" min="-2" pref="299" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="identifiantTF" max="32767" attributes="0"/>
-                          <Component id="identifiantLabel" max="32767" attributes="0"/>
+                          <Component id="resultScrollPanel" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="titreLabel" min="-2" pref="378" max="-2" attributes="0"/>
+                                  <Component id="titreTF" min="-2" pref="490" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="identifiantLabel" pref="448" max="32767" attributes="0"/>
+                                  <Component id="identifiantTF" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="acteurTF" min="-2" pref="490" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="directeurTF" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="345" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="371" max="-2" attributes="0"/>
               <Component id="rechercheButton" min="-2" pref="228" max="-2" attributes="0"/>
-              <EmptySpace pref="407" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,21 +69,29 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="titreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="artistLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="identifiantLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="titreLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="identifiantLabel" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="titreTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="artistTF" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="identifiantTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="11" max="32767" attributes="0"/>
-              <Component id="rechercheButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="acteurLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="resultScrollPanel" min="-2" pref="487" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="acteurTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="directeurTF" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="rechercheButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="resultScrollPanel" pref="489" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -83,19 +103,19 @@
         <Property name="text" type="java.lang.String" value="Recherche Titre:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="artistLabel">
+    <Component class="javax.swing.JLabel" name="acteurLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Recherche Artist:"/>
+        <Property name="text" type="java.lang.String" value="Recherche Acteur:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="identifiantLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Recherche Identifiant"/>
+        <Property name="text" type="java.lang.String" value="Recherche Identifiant:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="titreTF">
     </Component>
-    <Component class="javax.swing.JTextField" name="artistTF">
+    <Component class="javax.swing.JTextField" name="acteurTF">
     </Component>
     <Component class="javax.swing.JTextField" name="identifiantTF">
     </Component>
@@ -122,6 +142,13 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rechercheButtonMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Recherche Directeur:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="directeurTF">
     </Component>
   </SubComponents>
 </Form>

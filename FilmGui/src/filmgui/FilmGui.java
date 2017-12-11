@@ -5,6 +5,8 @@
  */
 package filmgui;
 import BDUtilities.BDUtilities;
+import java.sql.CallableStatement;
+import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -46,22 +48,24 @@ public class FilmGui extends javax.swing.JFrame {
     private void initComponents() {
 
         titreLabel = new javax.swing.JLabel();
-        artistLabel = new javax.swing.JLabel();
+        acteurLabel = new javax.swing.JLabel();
         identifiantLabel = new javax.swing.JLabel();
         titreTF = new javax.swing.JTextField();
-        artistTF = new javax.swing.JTextField();
+        acteurTF = new javax.swing.JTextField();
         identifiantTF = new javax.swing.JTextField();
         resultScrollPanel = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
         rechercheButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        directeurTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         titreLabel.setText("Recherche Titre:");
 
-        artistLabel.setText("Recherche Artist:");
+        acteurLabel.setText("Recherche Acteur:");
 
-        identifiantLabel.setText("Recherche Identifiant");
+        identifiantLabel.setText("Recherche Identifiant:");
 
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,49 +84,65 @@ public class FilmGui extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Recherche Directeur:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(resultScrollPanel)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(titreTF)
-                            .addComponent(titreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(artistTF)
-                            .addComponent(artistLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addContainerGap()
+                        .addComponent(acteurLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(identifiantTF)
-                            .addComponent(identifiantLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(resultScrollPanel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(titreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(titreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(identifiantLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                                    .addComponent(identifiantTF)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(acteurTF, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(directeurTF))))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(345, 345, 345)
+                .addGap(371, 371, 371)
                 .addComponent(rechercheButton, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(407, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titreLabel)
-                    .addComponent(artistLabel)
-                    .addComponent(identifiantLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(identifiantLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titreTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(artistTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(identifiantTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(rechercheButton)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acteurLabel)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acteurTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(directeurTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(rechercheButton)
+                .addGap(18, 18, 18)
+                .addComponent(resultScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -133,34 +153,37 @@ public class FilmGui extends javax.swing.JFrame {
         // TODO add your handling code here:
         String rechercheStr=null;
         String tmpStr=null;
-        String[] rechStr=null;
+        String[] dirStr=null;
+        String[] actStr=null;
         StringTokenizer strTok;
-        JTextField curField=null;
         
-        if(! titreTF.equals(""))
-        {
-            curField = titreTF;
-        }
-        if(! artistTF.equals(""))
-        {
-            curField = titreTF;
-        }
-        if(! identifiantTF.equals(""))
-        {
-            curField = titreTF;
-        }
-        
-        rechercheStr = curField.getText();
-        strTok = new StringTokenizer(rechercheStr);
-        rechStr = new String[strTok.countTokens()];
+        strTok = new StringTokenizer(directeurTF.getText(), ",");
+        dirStr = new String[strTok.countTokens()==0?10:strTok.countTokens() ];
         for(int i=0; i<strTok.countTokens();i++)
         {
-            rechStr[i]= strTok.nextToken();
+            dirStr[i]= strTok.nextToken();
+        }
+        strTok = new StringTokenizer(acteurTF.getText(), ",");
+        actStr = new String[strTok.countTokens()==0? 10:strTok.countTokens()];
+        for(int i=0; i<strTok.countTokens();i++)
+        {
+            actStr[i]= strTok.nextToken();
         }
         //recherche
+        CallableStatement cs = null;
         ResultSet rs=null;
+        String sql = "{call rechcb2(?,?,?,?,?,?}";
+        Ref result = null;
         try {
-            rs = uti.query("");
+            cs = uti.getCon().prepareCall(sql);
+            cs.setString(1, identifiantTF.getText().equals("")?"%":identifiantTF.getText());
+            cs.setString(2, titreTF.getText().equals("")?"%":titreTF.getText());
+            cs.setArray(3, uti.getCon().createArrayOf("varchar2(255)", actStr));
+            cs.setArray(3, uti.getCon().createArrayOf("varchar2(255)", dirStr));
+            cs.registerOutParameter(5, java.sql.Types.REF_CURSOR);
+            cs.execute();
+            result = cs.getRef(5);
+            rs = (ResultSet) result.getObject();
         } catch (SQLException ex) {
             Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -269,10 +292,12 @@ public class FilmGui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel artistLabel;
-    private javax.swing.JTextField artistTF;
+    private javax.swing.JLabel acteurLabel;
+    private javax.swing.JTextField acteurTF;
+    private javax.swing.JTextField directeurTF;
     private javax.swing.JLabel identifiantLabel;
     private javax.swing.JTextField identifiantTF;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton rechercheButton;
     private javax.swing.JScrollPane resultScrollPanel;
     private javax.swing.JTable resultTable;
