@@ -209,6 +209,7 @@ public class FilmGui extends javax.swing.JFrame {
         //affichage
         MyTableModel mtm = new MyTableModel(rs);
         resultTable.setModel(mtm);
+        System.out.println("RECHERCHE FAITES!");
     }//GEN-LAST:event_rechercheButtonMouseClicked
 
     /**
