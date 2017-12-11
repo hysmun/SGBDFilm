@@ -141,8 +141,18 @@ public class DetailsGui extends javax.swing.JFrame {
         voteSpinner.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 10.0d, 1.0d));
 
         voteButton.setText("Attribuer le vote");
+        voteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voteButtonMouseClicked(evt);
+            }
+        });
 
         okButton.setText("OK");
+        okButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                okButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -282,6 +292,14 @@ public class DetailsGui extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void okButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_okButtonMouseClicked
+
+    private void voteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voteButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_voteButtonMouseClicked
 
     /**
      * @param args the command line arguments
