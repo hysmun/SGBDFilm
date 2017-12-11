@@ -5,12 +5,14 @@
  */
 package filmgui;
 import BDUtilities.BDUtilities;
+import java.awt.List;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -273,6 +275,7 @@ public class FilmGui extends javax.swing.JFrame {
     }
     class MyTableModel extends AbstractTableModel {
         private final String[] tableHeaders;
+        public LinkedList lObj=null;
         ResultSet rs;
         ResultSetMetaData rsmd;
 
