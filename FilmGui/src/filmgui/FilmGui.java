@@ -173,7 +173,7 @@ public class FilmGui extends javax.swing.JFrame {
             Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        strTok = new StringTokenizer(directeurTF.getText(), "|");
+        strTok = new StringTokenizer(directeurTF.getText(), ",");
         dirStr = new String[strTok.countTokens()==0?1:strTok.countTokens()+1];
         System.out.println(""+strTok.countTokens());
         for(int i=0; i<strTok.countTokens();i++)
@@ -181,7 +181,7 @@ public class FilmGui extends javax.swing.JFrame {
             dirStr[i]= new String(strTok.nextToken());
             System.out.println(""+i+" -- "+dirStr[i]);
         }
-        strTok = new StringTokenizer(acteurTF.getText(), "|");
+        strTok = new StringTokenizer(acteurTF.getText(), ",");
         actStr = new String[strTok.countTokens()==0? 1:strTok.countTokens()+1];
         System.out.println(""+strTok.countTokens());
         for(int i=0; i<strTok.countTokens();i++)
