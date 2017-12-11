@@ -56,6 +56,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="371" max="-2" attributes="0"/>
               <Component id="rechercheButton" min="-2" pref="228" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+              <Component id="detailsButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -84,7 +86,10 @@
                   <Component id="directeurTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="rechercheButton" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="rechercheButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="detailsButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="resultScrollPanel" pref="489" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -147,6 +152,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="directeurTF">
+    </Component>
+    <Component class="javax.swing.JButton" name="detailsButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="details"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="detailsButtonMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

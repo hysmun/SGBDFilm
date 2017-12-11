@@ -66,6 +66,7 @@ public class FilmGui extends javax.swing.JFrame {
         rechercheButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         directeurTF = new javax.swing.JTextField();
+        detailsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +100,13 @@ public class FilmGui extends javax.swing.JFrame {
 
         jLabel1.setText("Recherche Directeur:");
 
+        detailsButton.setText("details");
+        detailsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,6 +136,8 @@ public class FilmGui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(371, 371, 371)
                 .addComponent(rechercheButton, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123)
+                .addComponent(detailsButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,7 +160,9 @@ public class FilmGui extends javax.swing.JFrame {
                     .addComponent(acteurTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(directeurTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(rechercheButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rechercheButton)
+                    .addComponent(detailsButton))
                 .addGap(18, 18, 18)
                 .addComponent(resultScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                 .addContainerGap())
@@ -304,6 +316,49 @@ public class FilmGui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_resultTableMouseClicked
 
+    private void detailsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsButtonMouseClicked
+        // TODO add your handling code here:
+        //recherche film
+            String FilmStr = (String)resultTable.getValueAt(resultTable.getSelectedRow(), 0);
+            ArrayList info= new ArrayList();
+            String sql = "{call pkg_rechcb.GetFilmInfo(?,?)}";
+            Ref result = null;
+            ResultSet rs=null;
+            CallableStatement cs = null;
+            try {
+                cs = uti.getCon().prepareCall(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                //cs = uti.getCon().prepareStatement(sql);
+                cs.setString(1, FilmStr);
+                cs.registerOutParameter(2, OracleTypes.CURSOR);
+                cs.execute();
+                rs = (ResultSet) cs.getObject(5);
+                resultTable.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (SQLException ex) {
+                Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                //
+                rs.next();
+            } catch (SQLException ex) {
+                Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ResultSetMetaData meta=null;
+            int numberOfColumns=0;
+            try {
+                meta = rs.getMetaData();
+                numberOfColumns = meta.getColumnCount();
+                for(int i=0;i<numberOfColumns;i++){
+                    info.add(rs.getObject(i));
+                }
+            }
+            catch (SQLException ex) {
+                Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //on affiche le gui details
+            DetailsGui dg = new DetailsGui();
+            dg.currentFilm = info;
+    }//GEN-LAST:event_detailsButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -419,6 +474,7 @@ public class FilmGui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acteurLabel;
     private javax.swing.JTextField acteurTF;
+    private javax.swing.JButton detailsButton;
     private javax.swing.JTextField directeurTF;
     private javax.swing.JLabel identifiantLabel;
     private javax.swing.JTextField identifiantTF;
