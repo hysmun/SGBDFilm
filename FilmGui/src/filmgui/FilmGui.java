@@ -348,7 +348,7 @@ public class FilmGui extends javax.swing.JFrame {
                 meta = rs.getMetaData();
                 numberOfColumns = meta.getColumnCount();
                 for(int i=0;i<numberOfColumns;i++){
-                    info.add(rs.getObject(i+1));
+                    info.add(rs.getObject(i+1)==null ? "null":rs.getObject(i+1));
                 }
             }
             catch (SQLException ex) {
