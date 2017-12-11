@@ -221,8 +221,10 @@ public class FilmGui extends javax.swing.JFrame {
                 for(i=0; i<obj.length;i++)
                 {
                     obj[i] = rs.getObject(i+1);
+                    System.out.print(""+obj[i]+" - ");
                 }
                 dtm.addRow(obj);
+                System.out.println();
             }
             resultTable.setModel(dtm);
             dtm.fireTableDataChanged();
