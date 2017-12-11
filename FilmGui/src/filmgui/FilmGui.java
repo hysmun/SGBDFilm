@@ -275,7 +275,7 @@ public class FilmGui extends javax.swing.JFrame {
     }
     class MyTableModel extends AbstractTableModel {
         private final String[] tableHeaders;
-        public LinkedList lObj=null;
+        public Object[][] lObj=null;
         ResultSet rs;
         ResultSetMetaData rsmd;
 
@@ -294,6 +294,13 @@ public class FilmGui extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(MyTableModel.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }
+            try {
+                while(rs.next())
+                {
+                    
+                }
+            } catch (Exception e) {
             }
         }
 
