@@ -178,7 +178,7 @@ public class FilmGui extends javax.swing.JFrame {
         System.out.println(""+strTok.countTokens());
         for(int i=0; i<strTok.countTokens();i++)
         {
-            dirStr[i]= strTok.nextToken();
+            dirStr[i]= new String(strTok.nextToken());
             System.out.println(""+i+" -- "+dirStr[i]);
         }
         strTok = new StringTokenizer(acteurTF.getText(), "|");
@@ -186,7 +186,7 @@ public class FilmGui extends javax.swing.JFrame {
         System.out.println(""+strTok.countTokens());
         for(int i=0; i<strTok.countTokens();i++)
         {
-            actStr[i]= strTok.nextToken();
+            actStr[i]= new String(strTok.nextToken());
             System.out.println(""+i+" -- "+actStr[i]);
         }
         //recherche
