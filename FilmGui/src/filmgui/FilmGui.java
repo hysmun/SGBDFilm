@@ -215,6 +215,7 @@ public class FilmGui extends javax.swing.JFrame {
         try {
             meta = rs.getMetaData();
             numberOfColumns = meta.getColumnCount();
+            System.out.println("number : "+numberOfColumns);
             while(rs.next())
             {
                 Object[] obj = new Object[numberOfColumns];
