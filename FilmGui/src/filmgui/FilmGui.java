@@ -215,11 +215,6 @@ public class FilmGui extends javax.swing.JFrame {
         try {
             meta = rs.getMetaData();
             numberOfColumns = meta.getColumnCount();
-        } catch (SQLException ex) {
-            Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
             while(rs.next())
             {
                 Object[] obj = new Object[numberOfColumns];
@@ -227,8 +222,7 @@ public class FilmGui extends javax.swing.JFrame {
                 {
                     obj[i] = rs.getObject(i+1);
                 }
-                dtm.addColumn(obj);
-                
+                dtm.addRow(obj);
             }
             resultTable.setModel(dtm);
             dtm.fireTableDataChanged();
