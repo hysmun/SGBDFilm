@@ -285,7 +285,7 @@ public class FilmGui extends javax.swing.JFrame {
                 cs.setString(1, FilmStr);
                 cs.registerOutParameter(2, OracleTypes.CURSOR);
                 cs.execute();
-                rs = (ResultSet) cs.getObject(5);
+                rs = (ResultSet) cs.getObject(2);
                 resultTable.setModel(DbUtils.resultSetToTableModel(rs));
             } catch (SQLException ex) {
                 Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
@@ -331,7 +331,7 @@ public class FilmGui extends javax.swing.JFrame {
                 cs.setString(1, FilmStr);
                 cs.registerOutParameter(2, OracleTypes.CURSOR);
                 cs.execute();
-                rs = (ResultSet) cs.getObject(5);
+                rs = (ResultSet) cs.getObject(2);
                 //resultTable.setModel(DbUtils.resultSetToTableModel(rs));
             } catch (SQLException ex) {
                 Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
@@ -348,7 +348,7 @@ public class FilmGui extends javax.swing.JFrame {
                 meta = rs.getMetaData();
                 numberOfColumns = meta.getColumnCount();
                 for(int i=0;i<numberOfColumns;i++){
-                    info.add(rs.getObject(i));
+                    info.add(rs.getObject(i+1));
                 }
             }
             catch (SQLException ex) {
@@ -357,6 +357,7 @@ public class FilmGui extends javax.swing.JFrame {
             //on affiche le gui details
             DetailsGui dg = new DetailsGui();
             dg.currentFilm = info;
+            dg.setAllValue(info);
             dg.setVisible(true);
     }//GEN-LAST:event_detailsButtonMouseClicked
 
