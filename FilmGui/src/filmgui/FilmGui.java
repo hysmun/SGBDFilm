@@ -321,10 +321,13 @@ public class FilmGui extends javax.swing.JFrame {
         //recherche film
             String FilmStr = (String)resultTable.getValueAt(resultTable.getSelectedRow(), 0);
             ArrayList info= new ArrayList();
-            String sql = "{call pkg_rechcb.GetFilmInfo(?,?)}";
+            String sql = "{call pkg_rechcb.mergeFilm(?)}";
             Ref result = null;
             ResultSet rs=null;
             CallableStatement cs = null;
+            
+            
+            sql = "{call pkg_rechcb.GetFilmInfo(?,?)}";
             try {
                 cs = uti.getCon().prepareCall(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 //cs = uti.getCon().prepareStatement(sql);
@@ -358,7 +361,9 @@ public class FilmGui extends javax.swing.JFrame {
             DetailsGui dg = new DetailsGui();
             dg.currentFilm = info;
             dg.setAllValue(info);
+            
             dg.setVisible(true);
+            
     }//GEN-LAST:event_detailsButtonMouseClicked
 
     /**

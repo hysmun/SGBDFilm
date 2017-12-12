@@ -43,6 +43,7 @@ public class DetailsGui extends javax.swing.JFrame {
             ip = "localhost";
             port = 1521;
             uti = new BDUtilities(ip,port, "cc");
+            
             con = uti.getCon();
         } catch (Exception ex) {
             Logger.getLogger(DetailsGui.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,6 +65,20 @@ public class DetailsGui extends javax.swing.JFrame {
         //listeGenreLabel.setText(currentFilm.get(10).toString());
         //listeActeursLabel.setText(currentFilm.get(11).toString());
         //listeDirecteursLabel.setText(currentFilm.get(12).toString());
+        String sql = "{call pkg_rechcb.mergeFilm(?)}";
+            Ref result = null;
+            ResultSet rs=null;
+            CallableStatement cs = null;
+            sql = "{call pkg_rechcb.mergefilm(?)}";
+            try {
+                cs = uti.getCon().prepareCall(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                //cs = uti.getCon().prepareStatement(sql);
+                cs.setInt(1, Integer.parseInt(currentFilm.get(0).toString()));
+                cs.execute();
+                //resultTable.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (SQLException ex) {
+                Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+            }
         return 1;
     }
 
@@ -359,6 +374,7 @@ public class DetailsGui extends javax.swing.JFrame {
         //PreparedStatement cs = null;
         ResultSet rs=null;
         //String sql = "{call pkg_rechcb.rechcbfct(?,?,?,?)}";
+        
         String sql = "{call UserVote(?,?,?,?)}";
         Ref result = null;
         try {
