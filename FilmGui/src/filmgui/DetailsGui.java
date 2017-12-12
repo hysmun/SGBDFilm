@@ -356,7 +356,7 @@ public class DetailsGui extends javax.swing.JFrame {
             cs.setInt(3, (int)voteSpinner.getValue());
             cs.setString(4, avisTF.getText());
             cs.execute();
-            resultTable.setModel(DbUtils.resultSetToTableModel(rs));
+            //resultTable.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException ex) {
             Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
         }
