@@ -5,7 +5,17 @@
  */
 package filmgui;
 
+import static filmgui.FilmGui.uti;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Ref;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import oracle.jdbc.internal.OracleTypes;
+import oracle.sql.ARRAY;
 
 /**
  *
@@ -14,6 +24,7 @@ import java.util.ArrayList;
 public class DetailsGui extends javax.swing.JFrame {
 
     public ArrayList currentFilm=null;
+    public Connection con=null;
     /*
     0- id           1- titre            2- status       3-release       4- rutime       5- tagline
     6- budget       7- certification    8- voteAvg      9-voteCount     10-genre        11 acteur       12- directeur
@@ -86,6 +97,7 @@ public class DetailsGui extends javax.swing.JFrame {
         voteSpinner = new javax.swing.JSpinner();
         voteButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
+        avisTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -180,6 +192,8 @@ public class DetailsGui extends javax.swing.JFrame {
             }
         });
 
+        avisTF.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,16 +241,15 @@ public class DetailsGui extends javax.swing.JFrame {
                             .addComponent(listeGenreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(listeActeursLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(listeDirecteursLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(attribuerCoteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(nomUtilisateurTF)
-                                    .addComponent(voteSpinner)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addComponent(voteButton))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(attribuerCoteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(nomUtilisateurTF)
+                            .addComponent(voteSpinner)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(voteButton)
+                                .addGap(39, 39, 39))
+                            .addComponent(avisTF)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(444, 444, 444)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -299,6 +312,8 @@ public class DetailsGui extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(voteSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(avisTF, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addComponent(voteButton)))
                 .addGap(18, 18, 18)
                 .addComponent(listeGenreLabel)
@@ -327,6 +342,25 @@ public class DetailsGui extends javax.swing.JFrame {
 
     private void voteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voteButtonMouseClicked
         // TODO add your handling code here:
+        con = FilmGui.uti.getCon();
+        CallableStatement cs = null;
+        //PreparedStatement cs = null;
+        ResultSet rs=null;
+        //String sql = "{call pkg_rechcb.rechcbfct(?,?,?,?)}";
+        String sql = "{call UserVote(?,?,?,?)}";
+        Ref result = null;
+        try {
+            cs = uti.getCon().prepareCall(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            cs.setString(1, nomUtilisateurTF.getText());
+            cs.setInt(2, (int)currentFilm.get(0));
+            cs.setInt(3, (int)voteSpinner.getValue());
+            cs.setString(4, avisTF.getText());
+            cs.execute();
+            resultTable.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_voteButtonMouseClicked
 
     /**
@@ -367,6 +401,7 @@ public class DetailsGui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acteurLabel;
     private javax.swing.JLabel attribuerCoteLabel;
+    private javax.swing.JTextField avisTF;
     private javax.swing.JLabel budgetLabel;
     private javax.swing.JLabel budgetValueLabel;
     private javax.swing.JLabel certificationLabel;

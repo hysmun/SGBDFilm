@@ -75,19 +75,16 @@
                           <Component id="listeActeursLabel" alignment="0" max="32767" attributes="0"/>
                           <Component id="listeDirecteursLabel" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="attribuerCoteLabel" alignment="0" pref="200" max="32767" attributes="0"/>
-                                  <Component id="nomUtilisateurTF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="voteSpinner" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="attribuerCoteLabel" alignment="0" pref="200" max="32767" attributes="0"/>
+                          <Component id="nomUtilisateurTF" alignment="0" max="32767" attributes="0"/>
+                          <Component id="voteSpinner" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="voteButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="avisTF" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -169,6 +166,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="voteSpinner" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="avisTF" min="-2" pref="69" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="voteButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -382,6 +381,11 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="okButtonMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="avisTF">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
