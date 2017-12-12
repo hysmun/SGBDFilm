@@ -29,7 +29,7 @@ import oracle.sql.ArrayDescriptor;
  */
 public class FilmGui extends javax.swing.JFrame {
 
-    BDUtilities uti;
+    static BDUtilities uti;
     String ip;
     int port;
     /**
