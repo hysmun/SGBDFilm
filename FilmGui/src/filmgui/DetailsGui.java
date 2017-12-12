@@ -5,6 +5,7 @@
  */
 package filmgui;
 
+import BDUtilities.BDUtilities;
 import static filmgui.FilmGui.uti;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -25,6 +26,9 @@ public class DetailsGui extends javax.swing.JFrame {
 
     public ArrayList currentFilm=null;
     public Connection con=null;
+    String ip=null;
+    int port =0;
+    BDUtilities uti=null;
     /*
     0- id           1- titre            2- status       3-release       4- rutime       5- tagline
     6- budget       7- certification    8- voteAvg      9-voteCount     10-genre        11 acteur       12- directeur
@@ -34,7 +38,15 @@ public class DetailsGui extends javax.swing.JFrame {
      * Creates new form DetailsGui
      */
     public DetailsGui() {
-        initComponents();
+        try {
+            initComponents();
+            ip = "localhost";
+            port = 1521;
+            uti = new BDUtilities(ip,port, "cc");
+            con = uti.getCon();
+        } catch (Exception ex) {
+            Logger.getLogger(DetailsGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public int setAllValue(ArrayList pArrayList)
@@ -352,8 +364,8 @@ public class DetailsGui extends javax.swing.JFrame {
         try {
             cs = uti.getCon().prepareCall(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             cs.setString(1, nomUtilisateurTF.getText());
-            cs.setInt(2, (int)currentFilm.get(0));
-            cs.setInt(3, (int)voteSpinner.getValue());
+            cs.setInt(2, Integer.parseInt(currentFilm.get(0).toString()));
+            cs.setDouble(3, (double)voteSpinner.getValue());
             cs.setString(4, avisTF.getText());
             cs.execute();
             //resultTable.setModel(DbUtils.resultSetToTableModel(rs));

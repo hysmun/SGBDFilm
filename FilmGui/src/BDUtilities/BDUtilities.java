@@ -36,6 +36,19 @@ public class BDUtilities {
         con = DriverManager.getConnection(tmpCon, login, motdepasse);
         instruc =  con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
     }
+    public BDUtilities(String ip, int port, String plog) throws ClassNotFoundException, Exception {
+        String tmpCon;
+        login = plog;
+        motdepasse = "oracle";
+        
+        nameConnection = "oracle.jdbc.OracleDriver";
+        
+        Class.forName(nameConnection);
+        
+        tmpCon = "jdbc:oracle:thin:@localhost:1521/orcl";
+        con = DriverManager.getConnection(tmpCon, login, motdepasse);
+        instruc =  con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+    }
     
     public ResultSet query(String pquery) throws SQLException
     {
